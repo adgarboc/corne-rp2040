@@ -1,0 +1,2 @@
+# Keep shell scripts executable as LF even with core.autocrlf=true on Windows.
+*.sh text eol=lf
