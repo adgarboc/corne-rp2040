@@ -21,6 +21,12 @@ MOUSEKEY_ENABLE = yes
 # Layer 3 uses multimedia keys (KC_MPLY, KC_VOLU, ...).
 EXTRAKEY_ENABLE = yes
 
+# Bootmagic lite is disabled: on a bare (unsoldered) board the matrix floats
+# and [0,0] can read as "held" at boot, which jumps straight back to the
+# bootloader right after flashing. Bootloader entry uses the physical BOOT
+# and RESET buttons instead.
+BOOTMAGIC_ENABLE = no
+
 # Vial turns these on by default, but this keymap defines none of them and
 # the generated introspection code then fails to link. Matches the upstream
 # keymap this is derived from.
