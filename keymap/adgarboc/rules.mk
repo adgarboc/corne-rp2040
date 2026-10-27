@@ -10,6 +10,12 @@ CONVERT_TO = sparkfun_pm2040
 VIAL_ENABLE = yes
 LTO_ENABLE  = yes
 
+# Vial talks over the raw HID interface. This vial-qmk only sets RAW_ENABLE
+# inside the VIA_ENABLE block of common_features.mk, so it must be requested
+# explicitly here or the USB descriptor ships without the vendor-defined
+# interface and vial.rocks shows nothing.
+RAW_ENABLE = yes
+
 # M1 keeps the firmware to matrix + layers: no OLED, no RGB.
 OLED_ENABLE       = no
 RGBLIGHT_ENABLE   = no
