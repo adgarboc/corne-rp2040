@@ -60,6 +60,9 @@ mkdir -p "$ROOT/firmware"
 MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL='*' docker run --rm \
     -v "${MOUNT_ROOT}/build/vial-qmk:/qmk" \
     -w /qmk \
+    -e GIT_CONFIG_COUNT=1 \
+    -e GIT_CONFIG_KEY_0=safe.directory \
+    -e GIT_CONFIG_VALUE_0='*' \
     "$QMK_DOCKER_IMAGE" \
     qmk compile -kb "$KEYBOARD" -km "$KEYMAP_NAME" 2>&1 | tee "$ROOT/build/build.log"
 
