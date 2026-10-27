@@ -1,0 +1,23 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  firmware:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out keymap repo
+        uses: actions/checkout@v4
+
+      - name: Build firmware (Docker, pinned vial-qmk)
+        run: bash build.sh
+
+      - name: Upload .uf2 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: crkbd_rev1_adgarboc-uf2
+          path: firmware/*.uf2
+          if-no-files-found: error
