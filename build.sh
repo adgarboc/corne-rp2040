@@ -48,6 +48,13 @@ git -C "$VQ" checkout --detach "$VIAL_QMK_COMMIT"
 # 2. Submodules (shallow).
 git -C "$VQ" submodule update --init --depth 1 $VIAL_QMK_SUBMODULES
 
+# 2b. Guard: QMK's VIA block force-enables bootmagic (common_features.mk),
+#     which on a bare unsoldered board reads its floating matrix as a held
+#     key and jumps straight back to the bootloader after flashing. We keep
+#     bootmagic off; bootloader entry uses the physical BOOT/RESET buttons.
+sed -i 's|^    BOOTMAGIC_ENABLE := yes|    # BOOTMAGIC_ENABLE := yes # adgarboc: disabled (floating matrix on bare boards)|' \
+    "$VQ/builddefs/common_features.mk"
+
 # 3. Copy the keymap in. keymap/adgarboc/ is the source of truth; the tree
 #    under build/ is disposable.
 rm -rf "$VQ/keyboards/$KEYBOARD/keymaps/$KEYMAP_NAME"
