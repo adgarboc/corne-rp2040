@@ -1,0 +1,7 @@
+# The cloned/pinned vial-qmk working tree (created by build.sh). Never committed.
+build/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
